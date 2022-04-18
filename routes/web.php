@@ -17,18 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/arms', function () {
-    return "test.";
-});
-
-Route::get('memes', function () {
-    return "They harden in response to physical trauma.";
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
-Route::redirect('/memes', '/arms');
 
 require __DIR__.'/auth.php';
