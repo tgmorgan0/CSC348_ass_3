@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/arms', function () {
-    return "Nanomachines son.";
+    return "test.";
 });
 
 Route::get('memes', function () {
@@ -28,5 +28,7 @@ Route::get('memes', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::redirect('/memes', '/arms');
 
 require __DIR__.'/auth.php';
