@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/arms', function () {
+    return "Nanomachines son.";
+});
+
+Route::get('memes', function () {
+    return "They harden in response to physical trauma.";
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
