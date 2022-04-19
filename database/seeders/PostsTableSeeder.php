@@ -16,28 +16,33 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         $a= new Post();
-        $a->text = "Found this the other day, absolutely stunning";
-        $a->image = "a picture of a living room";
+        $a->user_id=1;
+        $a->post_text = "Found this the other day, absolutely stunning";
+        $a->post_image = "path0";
         $a->save();
 
         $a= new Post();
-        $a->text = "There's something weirdly comforting about mute colours";
-        $a->image = "a picture of a room with muted colours";
+        $a->user_id=2;
+        $a->post_text = "There's something weirdly comforting about mute colours";
+        $a->post_image = "path1";
         $a->save();
         
         $a= new Post();
-        $a->text = "LOG BURNER!!!";
-        $a->image = "a picture of a room with a fireplace";
+        $a->user_id=1;
+        $a->post_text = "LOG BURNER!!!";
+        $a->post_image = "path2";
         $a->save();
 
         $a= new Post();
-        $a->text = "I can already see myself relaxing here after a hard day's work";
-        $a->image = "a picture of an asylum cell";
+        $a->user_id=1;
+        $a->post_text = "I can already see myself relaxing here after a hard day's work";
+        $a->post_image = "path3";
         $a->save();
 
         $a= new Post();
-        $a->text = "We really been sleeping on this, huh?";
-        $a->image = "a picture of a wallpapered room, the pattern's weird";
+        $a->user_id=1;
+        $a->post_text = "We really been sleeping on this, huh?";
+        $a->post_image = "path4";
         $a->save();
 
         Post::factory()->count(10)->create();

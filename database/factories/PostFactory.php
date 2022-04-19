@@ -25,9 +25,9 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'text' => $this->faker-> realText($maxNbChars = 200, $indexSize = 2),
-            'image' => $this->faker->imageUrl($width = 640, $height = 480), // 'http://lorempixel.com/640/480/'
-            //
+            'user_id' => 1,
+            'post_text' => $this->faker-> realText($maxNbChars = 200, $indexSize = 2),
+            'post_image' => "path"
         ];
     }
 }

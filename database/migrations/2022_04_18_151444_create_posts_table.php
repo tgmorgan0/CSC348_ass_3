@@ -14,10 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('text');
-            $table->string('image');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('post_text');
+            $table->string('post_image');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
