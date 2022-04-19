@@ -50,4 +50,7 @@ class User extends Authenticatable
         return $this->hasOne(UserRole::class);
     }
     
+    public function like(){
+        return $this->hasMany(Like::class);
+    }
 }
