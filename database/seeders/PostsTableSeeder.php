@@ -39,5 +39,7 @@ class PostsTableSeeder extends Seeder
         $a->text = "We really been sleeping on this, huh?";
         $a->image = "a picture of a wallpapered room, the pattern's weird";
         $a->save();
+
+        Post::factory()->count(10)->create();
     }
 }
