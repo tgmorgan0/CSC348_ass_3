@@ -16,4 +16,8 @@ class Post extends Model
     public function comment(){
         return $this->hasMany(Comment::class);
     }
+
+    public function notification(){
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
 }

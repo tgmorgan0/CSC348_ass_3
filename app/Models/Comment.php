@@ -16,4 +16,8 @@ class Comment extends Model
     public function like(){
         return $this->hasMany(Like::class);
     }
+
+    public function notification(){
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
 }

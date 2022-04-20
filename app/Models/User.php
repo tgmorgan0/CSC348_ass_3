@@ -53,4 +53,8 @@ class User extends Authenticatable
     public function like(){
         return $this->hasMany(Like::class);
     }
+
+    public function interest(){
+        return $this->belongsToMany(Interest::class);
+    }
 }
