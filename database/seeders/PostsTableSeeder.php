@@ -28,23 +28,23 @@ class PostsTableSeeder extends Seeder
         $a->save();
         
         $a= new Post();
-        $a->user_id=1;
+        $a->user_id=3;
         $a->post_text = "LOG BURNER!!!";
         $a->post_image = "path2";
         $a->save();
 
         $a= new Post();
-        $a->user_id=1;
+        $a->user_id=4;
         $a->post_text = "I can already see myself relaxing here after a hard day's work";
         $a->post_image = "path3";
         $a->save();
 
         $a= new Post();
-        $a->user_id=1;
+        $a->user_id=5;
         $a->post_text = "We really been sleeping on this, huh?";
         $a->post_image = "path4";
         $a->save();
 
-        Post::factory()->count(10)->create();
+        Post::factory()->count(5)->create();
     }
 }

@@ -14,7 +14,7 @@ class Post extends Model
     }
 
     public function comment(){
-        return $this->hasMany(Comment::class);
+        return $this->hasMany('App\Models\Comment', 'post_id')->distinct();
     }
 
     public function notification(){

@@ -30,5 +30,7 @@ class UsersTableSeeder extends Seeder
         $a->save();
         $a->interest()->attach(2);
         $a->interest()->attach(4);
+
+        User::factory()->count(3)->create();
     }
 }

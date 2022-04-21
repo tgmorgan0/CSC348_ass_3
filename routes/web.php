@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +22,13 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/post', [PostController::class, 'index']);
+
+//Route::get('/post', [CommentController::class, 'index']);
+
+Route::middleware(['auth'])->group(function(){
+    Route::view('/admin','admin')->name('admin');
+    });
 
 require __DIR__.'/auth.php';
