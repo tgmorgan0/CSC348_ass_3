@@ -9,7 +9,7 @@ class Notification extends Model
 {
     use HasFactory;
 
-    public function notifiable(){
+    public function notifiables(){
         return $this->morphTo();
     }
 }

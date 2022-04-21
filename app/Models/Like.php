@@ -10,9 +10,9 @@ class Like extends Model
     use HasFactory;
 
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
     public function comment(){
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Comment::class);
     }
 }

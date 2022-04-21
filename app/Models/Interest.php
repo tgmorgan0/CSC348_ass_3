@@ -9,7 +9,7 @@ class Interest extends Model
 {
     use HasFactory;
 
-    public function user(){
-        $this->belongsToMany(User::class);
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 }

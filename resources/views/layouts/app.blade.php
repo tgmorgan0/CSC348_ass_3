@@ -7,15 +7,27 @@
     </head>
     <body>
         <h1>Fakebook - @yield('title')</h1>
+        <h3>@yield('welcome')</h3>
+        <div>
+            @yield('create')
+        </div>
         <div>
             @yield('content')
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                @yield('panel heading')
+                @yield('note heading')
             </div>
             <div class="panel-body">
-                @yield('panel body')
+                @yield('note body')
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @yield('inter heading')
+            </div>
+            <div class="panel-body">
+                @yield('inter body')
             </div>
         </div>
         <script src="{{ asset('js/bootstrap.min.js')}}"></script>

@@ -23,12 +23,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/post', [PostController::class, 'index']);
 
-//Route::get('/post', [CommentController::class, 'index']);
 
 Route::middleware(['auth'])->group(function(){
-    Route::view('/admin','admin')->name('admin');
-    });
+    Route::put('/post/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::get('/post', [PostController::class, 'index'])->name('posts.index');
+    Route::post('/post', [PostController::class, 'store'])->name('posts.store');
+    Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+});
 
 require __DIR__.'/auth.php';

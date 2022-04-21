@@ -13,11 +13,11 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function comment(){
-        return $this->hasMany('App\Models\Comment', 'post_id')->distinct();
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 
-    public function notification(){
-        return $this->morphMany(Notification::class, 'notifiable');
+    public function notifications(){
+        return $this->morphMany('App\Notification', 'notifiable');
     }
 }

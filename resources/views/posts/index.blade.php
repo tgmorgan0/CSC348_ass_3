@@ -2,30 +2,79 @@
 
 @section('title', 'Posts')
 
+@section('welcome')
+    @if(!empty($user=auth()->user()))
+        <p>Welcome {{$user->name}}</p>
+    @else
+        <p>Login expired, try again</p>
+    @endif
+@endsection
+
+@section('create')
+    <form method="POST" action="{{route('posts.store')}}">
+        @csrf
+        <p>Text: <input type="text" name="post_text"></p>
+        <p>Image: <input type="text" name="post_image"></p>
+        <input type="submit" value="Submit">
+    </form>
+    @if(session('message'))
+        <p><b>{{session('message')}}</b></p>
+    @endif
+@endsection
+
 @section('content')
     <p>List of all Posts</p>
     <ul>
         @foreach($posts as $post)
-            <li>{{$post->post_image}}</li>
+            <form action="{{route('posts.destroy', $post->id)}}" method="POST" >
+                @csrf
+                @method("DELETE")
+                
+                <input type="submit" value="Delete">
+            </form>
+            <form action="{{route('posts.update', $post->id)}}" method="POST">
+                @csrf
+                @method("PUT")
+
+                <input type="text" size=75 value="{{$post->post_text}}">
+                <input type="submit" value="Edit">
+            </form>
             <li>{{$post->post_text}}</li>
+            <li>{{$post->post_image}}</li>
             <li>{{$post->id}}</li>
             <li>{{$post->user_id}}</li>
-<!--             @foreach($comments as $comment)
-                <li>{{$comment->comment_text}}<li>
-            @endforeach -->
+            <li>{{$post->user->name}}</li>
 
             @if(!empty($post->comments))
                 @foreach($post->comments as $comment)     
                     <li>{{$comment->comment_text}}</li>
+                    <li>user: {{$comment->user->name}}</li>
+                    @if(!empty($comment->likes))
+                        @foreach($comment->likes as $like)     
+                            <li>{{$like->count()}}</li>
+                        @endforeach
+                    @endif
                 @endforeach
             @endif
-            <br>  
+            <br><br>  
         @endforeach
     </ul>
+
+    
 @endsection 
 
-@section('panel heading', 'Notifications')
+@section('note heading', 'Notifications')
+@section('note body')
+    @foreach($user->notifications as $notification)
+        <p>{{$notification->id}}<p>
+    @endforeach
+@endsection
 
-@section('panel body')
-    <p>test</p>
+@section('inter heading', 'Interests')
+@section('inter body')
+    <ul>
+        @foreach($user->interests as $interest)
+            <li>{{$interest->interest}}</li>
+        @endforeach
+    </ul>
 @endsection

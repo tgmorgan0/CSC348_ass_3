@@ -16,7 +16,7 @@ class CommentsTableSeeder extends Seeder
     {
         $a=new Comment();
         $a->post_id=1;
-        $a->user_id=2;
+        $a->user_id=1;
         $a->comment_text="Lorem Ipsum";
         $a->save();
 

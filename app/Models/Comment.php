@@ -9,15 +9,20 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function post(){
+    public function post()
+    {
         return $this->belongsTo(Post::class);
     }
 
-    public function like(){
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function likes(){
         return $this->hasMany(Like::class);
     }
 
-    public function notification(){
-        return $this->morphMany(Notification::class, 'notifiable');
+    public function notifications(){
+        return $this->morphMany('App\Notification', 'notifiable');
     }
 }
