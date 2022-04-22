@@ -26,10 +26,17 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth'])->group(function(){
-    Route::put('/post/{id}', [PostController::class, 'update'])->name('posts.update');
     Route::get('/post', [PostController::class, 'index'])->name('posts.index');
     Route::post('/post', [PostController::class, 'store'])->name('posts.store');
     Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+    Route::put('/post/{id}', [PostController::class, 'update'])->name('posts.update');
+
+    Route::post('/comment/{id}', [CommentController::class, 'store'])->name('comments.store');
+    Route::put('/save/{id}', [CommentController::class, 'update'])->name('comments.update');
+
+    
 });
+
+
 
 require __DIR__.'/auth.php';

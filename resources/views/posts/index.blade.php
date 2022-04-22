@@ -37,7 +37,12 @@
                 @method("PUT")
 
                 <input type="text" size=75 value="{{$post->post_text}}">
-                <input type="submit" value="Edit">
+                <input type="submit" value="Edit Post">
+            </form>
+            <form action="{{route('comments.store', $post->id)}}" method="POST">
+                @csrf
+                <input type="text" name="comment_text">
+                <input type=submit value="Submit Comment"></input>
             </form>
             <li>{{$post->post_text}}</li>
             <li>{{$post->post_image}}</li>
@@ -46,7 +51,15 @@
             <li>{{$post->user->name}}</li>
 
             @if(!empty($post->comments))
-                @foreach($post->comments as $comment)     
+                @foreach($post->comments as $comment)
+                    <form action="{{route('comments.update', $comment->id)}}" method="POST">
+                        @csrf
+                        @method("PUT")
+
+                        <input type="text" size=75 value="{{$comment->comment_text}}">
+                        <input type="submit" value="Edit Comment">
+                    </form>
+					
                     <li>{{$comment->comment_text}}</li>
                     <li>user: {{$comment->user->name}}</li>
                     @if(!empty($comment->likes))
