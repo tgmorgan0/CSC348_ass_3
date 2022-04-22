@@ -18,6 +18,6 @@ class Post extends Model
     }
 
     public function notifications(){
-        return $this->morphMany('App\Notification', 'notifiable');
+        return $this->morphMany(Notification::class, 'notifiable');
     }
 }

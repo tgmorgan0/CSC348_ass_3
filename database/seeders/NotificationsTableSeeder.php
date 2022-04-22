@@ -18,11 +18,14 @@ class NotificationsTableSeeder extends Seeder
         $a=new Notification();
         $a->user_id=1;
         $a->notifiable_id=1;
-        $a->notifiable_type='App\Post';
+        $a->notifiable_type='App\Models\Post';
+        $a->save();
 
         $a=new Notification();
         $a->user_id=1;
         $a->notifiable_id=1;
-        $a->notifiable_type='App\Comment';
+        $a->notifiable_type='App\Models\Comment';
+        $a->save();
+
     }
 }

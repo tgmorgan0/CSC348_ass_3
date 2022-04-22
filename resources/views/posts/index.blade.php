@@ -36,7 +36,7 @@
                 @csrf
                 @method("PUT")
 
-                <input type="text" size=75 value="{{$post->post_text}}">
+                <input type="text" size=75 name="post_text" value="{{$post->post_text}}">
                 <input type="submit" value="Edit Post">
             </form>
             <form action="{{route('comments.store', $post->id)}}" method="POST">
@@ -56,20 +56,22 @@
                         @csrf
                         @method("PUT")
 
-                        <input type="text" size=75 value="{{$comment->comment_text}}">
+                        <input type="text" size=75 name = comment_text value="{{$comment->comment_text}}">
                         <input type="submit" value="Edit Comment">
                     </form>
 					
                     <li>{{$comment->comment_text}}</li>
                     <li>user: {{$comment->user->name}}</li>
+                    <form method="POST" action="{{route('likes.store', $comment->id)}}">
+                        @csrf
+                        <input type="submit" value="Like">
+                    </form>  
                     @if(!empty($comment->likes))
-                        @foreach($comment->likes as $like)     
-                            <li>{{$like->count()}}</li>
-                        @endforeach
+                        <p>{{$comment->likes->count()}}</p>
                     @endif
                 @endforeach
             @endif
-            <br><br>  
+            <br><br>
         @endforeach
     </ul>
 
@@ -78,9 +80,16 @@
 
 @section('note heading', 'Notifications')
 @section('note body')
-    @foreach($user->notifications as $notification)
-        <p>{{$notification->id}}<p>
-    @endforeach
+    <ul>
+        @foreach($user->notifications as $notification)
+            @if($notification->notifiable_type=='App\Models\Post')
+                <li><a href="{{route('notifications.destroy', $notification->id)}}">Someone has commented on your post</a></li>
+            @else
+                <li><a href="{{route('notifications.destroy', $notification->id)}}">Someone has liked your comment</a></li>
+            @endif
+            
+        @endforeach
+    </ul>
 @endsection
 
 @section('inter heading', 'Interests')

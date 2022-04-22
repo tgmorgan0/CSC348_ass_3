@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\User;
 use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Notification;
 
-class CommentController extends Controller
+class LikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,21 +38,16 @@ class CommentController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'comment_text' => 'required|max:255'
-        ]);
-
-        $a=New Comment();
+        $a=New Like();
         $a->user_id=$request->user()->id;
-        $a->post_id=$id;
-        $a->comment_text=$validatedData['comment_text'];
+        $a->comment_id=$id;
         $a->save();
 
         $notification = new Notification();
-        $post=Post::find($a->post_id);
-        $notification->user_id= $post->user_id;
-        $notification->notifiable_id=$a->post_id;
-        $notification->notifiable_type='App\Models\Post';
+        $comment=Comment::find($a->comment_id);
+        $notification->user_id= $comment->user_id;
+        $notification->notifiable_id=$a->comment_id;
+        $notification->notifiable_type='App\Models\Comment';
         $notification->save();
         return redirect()->route( 'posts.index' );
     }
@@ -85,19 +81,10 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $id)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'comment_text' => 'required|max:255'
-        ]);
-
-        $id->comment_text=$validatedData['comment_text'];
-        $id->update();
-
-        session()->flash('message','Comment was edited');
-        return redirect()->route( 'posts.index' );
+        //
     }
-
 
     /**
      * Remove the specified resource from storage.
