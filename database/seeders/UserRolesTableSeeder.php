@@ -17,9 +17,11 @@ class UserRolesTableSeeder extends Seeder
         $a = new UserRole();
         $a->user_id = 1;
         $a->role_type = "standard_user";
+        $a->save();
 
         $a = new UserRole();
         $a->user_id = 2;
         $a->role_type = "administrator";
+        $a->save();
     }
 }

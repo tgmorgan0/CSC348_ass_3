@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UploadImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,10 @@ Route::middleware(['auth'])->group(function(){
     //Route::post('/notification', [NotificationController::class, 'store'])->name('notifications.store');
 
     Route::get('/notificationdelete/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+
+    Route::get('uploadimage/{id}', [UploadImageController::class, 'index']);
+    Route::post('saveimage/{id}', [UploadImageController::class, 'save']);
+
 });
 
 

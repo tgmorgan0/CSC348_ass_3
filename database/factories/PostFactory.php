@@ -27,8 +27,7 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'post_text' => $this->faker-> realText($maxNbChars = 200, $indexSize = 2),
-            'post_image' => "path"
+            'post_text' => $this->faker-> realText($maxNbChars = 200, $indexSize = 2)
         ];
     }
 }

@@ -20,4 +20,8 @@ class Post extends Model
     public function notifications(){
         return $this->morphMany(Notification::class, 'notifiable');
     }
+    
+    public function photo(){
+        return $this->belongsTo(Photo::class);
+    }
 }

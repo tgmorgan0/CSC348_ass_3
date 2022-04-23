@@ -52,17 +52,32 @@ class PostController extends Controller
     {
         $validatedData = $request->validate([
             'post_text' => 'required|max:255',
-            'post_image' => 'nullable|max:255'
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif'
         ]);
+
+        $name = $request->file('image')->getClientOriginalName();
 
         $a=New Post();
         $a->user_id=$request->user()->id;
         $a->post_text=$validatedData['post_text'];
-        $a->post_image=$validatedData['post_image'];
+        $a->post_image=$name;
         $a->save();
+
+        
 
         session()->flash('message','Post was created');
         return redirect()->route( 'posts.index' );
+
+        
+    
+           $path = $request->file('post_image')->store('public/images');
+    
+    
+           $a = new Post;
+    
+           $a->post_image = $path;
+    
+           $save->save();
     }
 
     /**
