@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
@@ -18,17 +19,20 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::all();
-        $comments=Post::find(1)->comments;
-        $likes=Comment::find(1)->likes;
+        $posts=Post::paginate(1);
+        $postsAll=Post::all();
+        $comments=Comment::all();
+        $likes=Like::all();
         $interests=Interest::all();
         $notifications=Notification::all();
         return view(
             'posts.index',
+            ['postsAll'=>$postsAll],
             ['posts'=>$posts],
             ['likes'=>$likes],
             ['interests'=>$interests],
-            ['comments'=>$comments]
+            ['comments'=>$comments],
+            compact('posts')
         );
     }
 

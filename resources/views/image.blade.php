@@ -21,11 +21,10 @@
   <div class="card">
  
     <div class="card-header text-center font-weight-bold">
-      <h2>Laravel 8 Upload Image Tutorial</h2>
+      <h2>Upload Image</h2>
     </div>
  
     <div class="card-body">
-        <p>id: {{$id}}</p>
         <form method="POST" enctype="multipart/form-data" id="uploadimage" action="{{ url('saveimage', [$id])}}" >
             @csrf       
             <div class="row">

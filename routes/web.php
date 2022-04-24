@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UploadImageController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +19,9 @@ use App\Http\Controllers\UploadImageController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-
+Route::get('/', [
+    PostController::class, 'index'
+])->middleware(['auth'])->name('posts.index');
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/post', [PostController::class, 'index'])->name('posts.index');
@@ -44,6 +39,10 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('uploadimage/{id}', [UploadImageController::class, 'index']);
     Route::post('saveimage/{id}', [UploadImageController::class, 'save']);
+
+    Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->middleware('auth')
+                ->name('logout');
 
    
 });
