@@ -56,10 +56,7 @@
                 <input type=submit value="Submit Comment"></input>
             </form>
             @if(!empty($post->photo_id))
-                <p>{{$post->photo->path}}</p>
-                <p>{{$post->photo->name}}</p>
-                {{asset("storage/app/public/images/HTjFZDdtXhJed3gzVAdb5feW7Cm9odPYi97cysPU.png")}}
-                <img src="HTjFZDdtXhJed3gzVAdb5feW7Cm9odPYi97cysPU.png">
+                <img src = "{{asset('storage/images/HTjFZDdtXhJed3gzVAdb5feW7Cm9odPYi97cysPU.png')}}"></img>
             @endif
             <li>{{$post->id}}</li>
             <li>{{$post->user_id}}</li>

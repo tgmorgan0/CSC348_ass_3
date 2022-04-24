@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('uploadimage/{id}', [UploadImageController::class, 'index']);
     Route::post('saveimage/{id}', [UploadImageController::class, 'save']);
 
+   
 });
 
 
