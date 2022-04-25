@@ -9,6 +9,7 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Interest;
 use App\Models\Notification;
+use App\AnimalFact;
 
 class PostController extends Controller
 {
@@ -138,5 +139,9 @@ class PostController extends Controller
 
         session()->flash('message','Post was deleted');
         return redirect()->route( 'posts.index' );
+    }
+
+    static function animalFact(AnimalFact $t){
+        return $t::getFact();       
     }
 }

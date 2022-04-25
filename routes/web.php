@@ -1,5 +1,6 @@
 <?php
 
+use App\AnimalFact;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
@@ -7,6 +8,12 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UploadImageController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+app()->singleton('App\AnimalFact', function($app){
+    return new AnimalFact();
+});
+
+$t=app()->make('App\AnimalFact');
 
 /*
 |--------------------------------------------------------------------------
@@ -28,12 +35,12 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/post', [PostController::class, 'store'])->name('posts.store');
     Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
     Route::put('/savepost/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::get('/animalfact', [PostController::class,'animalFact'])->name('posts.animalFact');
 
     Route::post('/comment/{id}', [CommentController::class, 'store'])->name('comments.store');
     Route::put('/save/{id}', [CommentController::class, 'update'])->name('comments.update');
 
     Route::post('/like/{id}', [LikeController::class, 'store'])->name('likes.store');
-    //Route::post('/notification', [NotificationController::class, 'store'])->name('notifications.store');
 
     Route::get('/notificationdelete/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 

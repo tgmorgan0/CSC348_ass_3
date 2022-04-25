@@ -61,7 +61,7 @@
             @endif
             
             @if(!empty($post->photo_id))
-                <img src = "{{asset('storage/images/HTjFZDdtXhJed3gzVAdb5feW7Cm9odPYi97cysPU.png')}}"></img>
+                <img src = "{{asset($post->photo->name)}}"></img>
             @endif
             <li>Posted by:  {{$post->user->name}}</li>            
     </ul> 
@@ -130,4 +130,8 @@
             <li>{{$interest->interest}}</li>
         @endforeach
     </ul>
+@endsection
+
+@section('fact')
+    <?php echo App\Http\Controllers\PostController::animalFact(app()->make('App\AnimalFact'));?>
 @endsection

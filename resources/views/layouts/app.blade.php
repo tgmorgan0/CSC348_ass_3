@@ -26,7 +26,16 @@
                 </div>
                 @yield('create')
             </div>
-            <div class="col">Service Container</div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header font-weight-bold">
+                        <h4>Fact of the day(displayed through Dependancy Injection)</h4>
+                    </div>
+                    @yield('fact')
+                </div>
+                
+                
+            </div>
         </div>
 
         <div class="row">

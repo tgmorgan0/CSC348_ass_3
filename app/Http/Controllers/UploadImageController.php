@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 Use App\Models\Photo;
 use App\Models\Post;
 
@@ -22,14 +23,14 @@ class UploadImageController extends Controller
  
         $name = $request->file('image')->getClientOriginalName();
  
-        $path = $request->file('image')->store('public/images');
+        $path = $request->file('image')->store('public');
  
  
         $save = new Photo;
  
-        $save->name = $name;
+        $save->name = 'storage'.Str::substr($path, 6);
         $save->path = $path;
- 
+        
         $save->save();
 
         $a=Post::find($id);
