@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('/comment/{id}', [CommentController::class, 'store'])->name('comments.store');
     Route::put('/save/{id}', [CommentController::class, 'update'])->name('comments.update');
+    Route::get('/comments/{id}', [CommentController::class, 'page'])->name('comments.page');
 
     Route::post('/like/{id}', [LikeController::class, 'store'])->name('likes.store');
 

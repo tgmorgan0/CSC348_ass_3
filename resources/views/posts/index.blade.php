@@ -78,6 +78,7 @@
                 <textarea rows="2" cols="75" name="comment_text"></textarea><br>
                 <input type=submit value="Submit Comment"></input>
             </form>
+            <a href="{{route('comments.page', $post->id)}}">View comments with ajax</a>
             @if(!empty($post->comments))
                 @foreach($post->comments as $comment)
                     @if($user->id==$comment->user_id)

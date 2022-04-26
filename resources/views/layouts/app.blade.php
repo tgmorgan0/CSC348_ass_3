@@ -29,7 +29,8 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header font-weight-bold">
-                        <h4>Fact of the day(displayed through Dependancy Injection)</h4>
+                        <h4>Fact of the day</h4>
+                        <h5>(Uses service container to communicate with external API using dependancy injection)</h5>
                     </div>
                     @yield('fact')
                 </div>

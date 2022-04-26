@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -109,4 +110,23 @@ class CommentController extends Controller
     {
         //
     }
+
+    public function page($id){
+        return view('comments.index',['id'=>$id]);
+    }
+
+    public function apiIndex($id){
+        $comments=Comment::query()->where('post_id', '=', "$id")->get();
+        return $comments;
+    }
+
+    public function apiStore(Request $request){
+        $e = new Comment();
+        $e->user_id= $request['user_id'];
+        $e->post_id= $request['post_id'];
+        $e->comment_text = $request['comment_text'];
+        $e->save();
+        return $e;
+    }
+
 }
